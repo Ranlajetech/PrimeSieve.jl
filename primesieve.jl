@@ -8,10 +8,10 @@ and an Vector of these prime numbers.
 
 # Examples
 ```jldoctest
-julia> primefilter(7)
+julia> primesieve(7)
 (4, [2, 3, 5, 7])
 
-julia> primefilter(30)
+julia> primesieve(30)
 (10, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29])
 ```
 """
