@@ -16,13 +16,9 @@ julia> primesieve(30)
 ```
 """
 function primesieve(x::T)::Tuple{T, Vector{T}} where T<:Integer
-    if x < 2
-        return (T(0), T[])
-    elseif x < 3
-        return (T(1), T[2])
-    elseif x < 5
-        return (T(2), T[2, 3])
-    end
+    x < 2 && return (T(0), T[])
+    x < 3 && return (T(1), T[2])
+    x < 5 && return (T(2), T[2, 3])
     # A: 6n - 1
     # B: 6n + 1
     lenA = div(x + 1, 6)
