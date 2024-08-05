@@ -19,12 +19,12 @@ function primesieve(x::T)::Tuple{T, Vector{T}} where T<:Integer
     x < 2 && return (T(0), T[])
     x < 3 && return (T(1), T[2])
     x < 5 && return (T(2), T[2, 3])
-    # A: 6n - 1
-    # B: 6n + 1
-    lenA = div(x + 1, 6)
-    lenB = div(x - 1, 6)
-    A = trues(lenA)
-    B = trues(lenB)
+    # wrapping around may happen
+    tmp_div, tmp_rem = divrem(x, 6)
+    lenA = tmp_div + (tmp_rem == 5) # div(x + 1, 6)
+    lenB = tmp_div - (tmp_rem == 0) # div(x - 1, 6)
+    A = trues(lenA) # A: 6n - 1
+    B = trues(lenB) # B: 6n + 1
     for k::T in 1:div(floor(T, sqrt(x)) + 1, 6)
         if A[k]
             AA = (6k)k : (6k-1) : lenA
